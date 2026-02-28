@@ -1,351 +1,122 @@
-# pdf_learning_ass2
-Learning a Probability Density Function Using a Roll-Number-Based Non-Linear Transformation
-📌 Project Description
-
-This project explores the process of estimating a probability density function (PDF) from real environmental data after applying a roll-number-dependent non-linear transformation. The primary goal is to understand how statistical distributions can be learned when the original data undergoes controlled mathematical distortion.
-
-The study uses nitrogen dioxide (NO₂) concentration measurements from an Indian air quality dataset. These values are transformed using a sinusoidal function whose parameters depend on the student’s university roll number. A Gaussian-like probability density function is then learned from the transformed data using basic statistical estimation techniques.
-
-📂 Dataset Information
-
-Dataset: India Air Quality Dataset
-
-Source: Kaggle
-
-Selected Feature: NO₂ (Nitrogen Dioxide concentration)
-
-Nature of Data: Continuous numerical measurements
-
-Preprocessing Performed
-
-Before analysis, the dataset is cleaned to ensure reliable results:
-
-Non-numeric values are removed
-
-Missing entries are discarded
-
-Column names are standardized for consistency
-
-🔁 Step 1: Roll-Number-Based Non-Linear Transformation
-
-Each original NO₂ value 
-𝑥
-x is converted into a transformed variable 
-𝑧
-z using the equation:
-
-𝑧
-=
-𝑥
-+
-𝑎
-𝑟
-sin
-⁡
-(
-𝑏
-𝑟
-𝑥
-)
-z=x+a
-r
-	​
-
-sin(b
-r
-	​
-
-x)
-
-The coefficients 
-𝑎
-𝑟
-a
-r
-	​
-
- and 
-𝑏
-𝑟
-b
-r
-	​
-
- are uniquely determined from the roll number 
-𝑟
-r:
-
-𝑎
-𝑟
-=
-0.05
-×
-(
-𝑟
- 
-m
-o
-d
- 
-7
-)
-a
-r
-	​
-
-=0.05×(rmod7)
-𝑏
-𝑟
-=
-0.3
-×
-(
-(
-𝑟
- 
-m
-o
-d
- 
-5
-)
-+
-1
-)
-b
-r
-	​
-
-=0.3×((rmod5)+1)
-Motivation for This Transformation
-
-Introduces controlled non-linearity into the dataset
-
-Ensures each student obtains a unique transformation
-
-Models realistic measurement distortions found in environmental data
-
-📐 Step 2: Learning the Probability Density Function
-
-After applying the transformation, the distribution of the variable 
-𝑧
-z is modeled using a Gaussian-like probability density function:
-
-𝑝
-^
-(
-𝑧
-)
-=
-𝑐
- 
-𝑒
-−
-𝜆
-(
-𝑧
-−
-𝜇
-)
-2
-p
-^
-	​
-
-(z)=ce
-−λ(z−μ)
-2
-
-This formulation resembles a normal distribution and is characterized by three parameters: the mean 
-𝜇
-μ, the spread parameter 
-𝜆
-λ, and the normalization constant 
-𝑐
-c.
-
-📊 Parameter Estimation Approach
-
-The parameters of the PDF are estimated directly from the transformed data using statistical definitions.
-
-Parameter Meaning
-Symbol	Interpretation
-
-𝜇
-μ	Mean of transformed values
-
-𝜎
-2
-σ
-2
-	Variance of transformed values
-
-𝜆
-λ	Controls distribution spread
-
-𝑐
-c	Normalization factor
-Estimation Equations
-𝜇
-=
-1
-𝑛
-∑
-𝑖
-=
-1
-𝑛
-𝑧
-𝑖
-μ=
-n
-1
-	​
-
-i=1
-∑
-n
-	​
-
-z
-i
-	​
-
-𝜎
-2
-=
-1
-𝑛
-∑
-𝑖
-=
-1
-𝑛
-(
-𝑧
-𝑖
-−
-𝜇
-)
-2
-σ
-2
-=
-n
-1
-	​
-
-i=1
-∑
-n
-	​
-
-(z
-i
-	​
-
-−μ)
-2
-𝜆
-=
-1
-2
-𝜎
-2
-λ=
-2σ
-2
-1
-	​
-
-𝑐
-=
-1
-𝜎
-2
-𝜋
-c=
-σ
-2π
-	​
-
-1
-	​
-
-
-These values are computed programmatically after transforming the dataset.
-
-📋 Experimental Results
-
-The notebook calculates and displays the estimated parameters 
-𝜇
-μ, 
-𝜆
-λ, and 
-𝑐
-c based on the transformed NO₂ data. Since the transformation depends on the roll number, the numerical values of these parameters vary for each student.
-
-Interpretation
-
-𝜇
-μ represents the central tendency of the transformed data
-
-𝜆
-λ determines how concentrated or spread out the PDF is
-
-𝑐
-c ensures the total probability integrates to one
-
-📈 Visualization and Analysis
-
-To verify the learned distribution, the following visualizations are generated:
-
-Histogram of the transformed variable 
-𝑧
-z
-
-Plot of the estimated probability density function
-
-Overlay comparison between empirical data distribution and the learned PDF
-
-These plots confirm that the estimated PDF provides a reasonable approximation of the transformed data distribution.
-
-🧪 Overall Workflow
-
-Load the air quality dataset
-
-Extract NO₂ concentration values
-
-Apply roll-number-dependent non-linear transformation
-
-Compute statistical parameters
-
-Learn the probability density function
-
-Visualize and analyze results
-
-🚀 Execution Instructions
-
-Download the dataset from Kaggle
-
-Upload the dataset to the working directory (or update the file path)
-
-Modify the roll number in the notebook
-
-Execute all cells sequentially
-
-Review the estimated parameters and plots
-
-📌 Summary
-
-This project demonstrates how probability density functions can be estimated from real-world data after applying a structured non-linear transformation. The roll-number-based formulation ensures uniqueness, while the Gaussian-like PDF offers a simple yet effective statistical model for analysis. The approach highlights the practical connection between data preprocessing, transformation, and probabilistic modeling.
-
-📎 References
-
-Probability Theory and Statistical Modeling
-
-Gaussian (Normal) Distribution
-
-Parameter Estimation Techniques
-
-India Air Quality Dataset (Kaggle)
+# 📊 PDF Learning — Assignment 2
+
+> **Learning a Probability Density Function Using a Roll-Number-Based Non-Linear Transformation**
+
+---
+
+## 🧾 Overview
+
+This project estimates a **Probability Density Function (PDF)** from real-world environmental data after applying a personalized non-linear transformation. It demonstrates the practical relationship between data preprocessing, mathematical distortion, and probabilistic modeling.
+
+The dataset used contains **Nitrogen Dioxide (NO₂)** concentration measurements from India's air quality monitoring records. A sinusoidal transformation — uniquely parameterized by the student's roll number — is applied before fitting a Gaussian-like PDF to the resulting distribution.
+
+---
+
+## 📂 Dataset
+
+| Property | Details |
+|---|---|
+| **Dataset** | India Air Quality Dataset |
+| **Source** | [Kaggle](https://www.kaggle.com/) |
+| **Feature Used** | NO₂ (Nitrogen Dioxide Concentration) |
+| **Data Type** | Continuous numerical measurements |
+
+### Preprocessing Steps
+- Removed non-numeric entries
+- Discarded missing/null values
+- Standardized column names for consistency
+
+---
+
+## 🔁 Step 1: Roll-Number-Based Non-Linear Transformation
+
+Each original NO₂ value $x$ is transformed into $z$ using:
+
+$$z = x + a_r \sin(b_r x)$$
+
+The coefficients $a_r$ and $b_r$ are derived from roll number $r$ as follows:
+
+$$a_r = 0.05 \times (r \mod 7)$$
+
+$$b_r = 0.3 \times ((r \mod 5) + 1)$$
+
+### Parameters for Roll Number `102317299`
+
+| Parameter | Calculation | Value |
+|---|---|---|
+| $a_r$ | `0.05 × (102317299 mod 7)` = `0.05 × 0` | **0.00** |
+| $b_r$ | `0.3 × ((102317299 mod 5) + 1)` = `0.3 × 5` | **1.50** |
+
+> Since $a_r = 0$, the transformation simplifies to $z = x$ — meaning the sinusoidal distortion has **no effect** for this roll number, and the transformed distribution mirrors the original NO₂ data.
+
+---
+
+## 📐 Step 2: Learning the PDF
+
+The transformed data is modeled using a **Gaussian-like PDF**:
+
+$$\hat{p}(z) = c \cdot e^{-\lambda(z - \mu)^2}$$
+
+### Parameter Estimation
+
+| Symbol | Meaning | Formula |
+|---|---|---|
+| $\mu$ | Mean (central tendency) | $\mu = \frac{1}{n} \sum_{i=1}^{n} z_i$ |
+| $\sigma^2$ | Variance (spread) | $\sigma^2 = \frac{1}{n} \sum_{i=1}^{n} (z_i - \mu)^2$ |
+| $\lambda$ | Spread control parameter | $\lambda = \frac{1}{2\sigma^2}$ |
+| $c$ | Normalization constant | $c = \frac{1}{\sigma\sqrt{2\pi}}$ |
+
+All parameters are computed directly from the transformed dataset using standard statistical estimation.
+
+---
+
+## 📈 Visualization & Analysis
+
+The following plots are generated to validate the learned distribution:
+
+1. **Histogram** of the transformed variable $z$
+2. **PDF curve** of the estimated Gaussian-like function $\hat{p}(z)$
+3. **Overlay plot** comparing the empirical histogram with the fitted PDF
+
+These visualizations confirm that the estimated PDF is a reasonable approximation of the actual data distribution.
+
+---
+
+## 🧪 Workflow Summary
+
+```
+1. Load the India Air Quality dataset
+2. Extract and clean NO₂ concentration values
+3. Apply roll-number-dependent transformation: z = x + a_r·sin(b_r·x)
+4. Compute μ, σ², λ, and c from transformed data
+5. Construct the Gaussian-like PDF: p̂(z) = c·exp(−λ(z−μ)²)
+6. Visualize: histogram, PDF curve, and overlay comparison
+```
+
+---
+
+## 🚀 How to Run
+
+1. Download the **India Air Quality Dataset** from [Kaggle](https://www.kaggle.com/)
+2. Place the dataset CSV in the working directory (or update the file path in the notebook)
+3. Set your **roll number** in the notebook configuration cell
+4. Run all cells sequentially
+5. Review the estimated parameters and generated plots
+
+---
+
+## 📌 Key Takeaways
+
+- The roll-number-based transformation ensures **every student gets a unique dataset variant**
+- For roll number `102317299`, $a_r = 0$, so $z = x$ (no sinusoidal distortion)
+- The Gaussian-like PDF provides a simple yet effective model for continuous environmental data
+- Parameters $\mu$, $\lambda$, and $c$ fully characterize the learned distribution
+
+---
+
+## 📎 References
+
+- Gaussian (Normal) Distribution — Statistical Theory
+- Maximum Likelihood & Method of Moments — Parameter Estimation
+- [India Air Quality Dataset — Kaggle](https://www.kaggle.com/)
+- Probability Theory and Statistical Modeling — Course Materials
